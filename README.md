@@ -1,6 +1,6 @@
 # tootfiles.py
 
-*Store your data in Twitter.*
+*Store your data in Twitter. Brilliant.*
 
 Let's be honest: this is probably _the_ worst idea ever, but I laughed so hard
 at the prospect of storing useful amounts of data in 140 byte text messages
@@ -8,13 +8,19 @@ that I had to see how it would work.
 
 I don't think using this script is against the Twitter TOS, but I really can't be responsible if you somehow abuse things and screw it up for all of us. Don't pee in the pool, OK?
 
-# Usage
+## Prerequisites
+
+* python-twitter - Used to post tootfiles to Twitter HQ.
+* simplejson - Used to parse toots in the decode process.
+* BeautifulSoup - Used to scrape toots in the decode process. This might be removed in a later version, if I ever implement toots as linked-lists.
+
+## Usage
 
 This script can be used either as a standalone utility script or as a library.
 
-## Standalone
+### Standalone
 
-### Encoding a file to toots
+#### Encoding a file to toots
 
 To test encoding a file, simply pass the script a binary file with the `encode` flag and it will print the toot array to standard out. Go hog wild if you wish, but know that large files will generate a huge amount of output.
 
@@ -24,20 +30,20 @@ To send that file to a Twitter stream, simply add your Twitter credentials using
 
     python tootfiles.py --encode="helloworld.gif" --user="someuser" --password="somepass"
 
-### Decoding a published tootfile
+#### Decoding a published tootfile
 
-To decode a published tootfile, you'll need to find a valid header status to work with. I just happen to have one available, so we'll use it. Because we're playing nicely, the decoded file will go to standard out, but feel to redirect it to an actual file for your own purposes.
+To decode a published tootfile, you'll need to find a valid header status id to work with. I just happen to have one available, so we'll use it. Because we're playing nicely, the decoded file will go to standard out, but feel to redirect it to an actual file for your own purposes.
 
-    python tootfiles.py --decode="http://someurl.com" > helloagainworld.gif
+    python tootfiles.py --decode="1670303405" > helloagainworld.gif
  
-## As a code library
+### As a code library
 
 If you're interested in using tootfiles in another python project, you can stick its folder somewhere on your python path and just import it. The below code snippet outlines the API.
 
     import tootfiles
 
 
-# License
+## License
 
 Copyright (c) 2009 Luke Hatcher
 
