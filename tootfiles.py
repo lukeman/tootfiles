@@ -35,7 +35,7 @@ class FileEncoder(object):
         tootlist = self._segment(data)
 
         # Header Information
-        header = "Tootfile:'%s' MD5:'%s' Count:'%s'" % (self.filename, md5hash, self.tootcount)
+        header = "|Tootfile:'%s' MD5:'%s' Count:'%s'|" % (self.filename, md5hash, self.tootcount)
 
         tootlist.append(header) # Insert the header
         self.tootlist = tootlist
@@ -64,7 +64,7 @@ class TootDecoder(object):
         self._processheader()
     
     def _get_info(tootarray):
-        header_re = "Tootfile:'(?P<filename>.*?)' MD5:'(?P<md5>.*?)' Count:'(?P<count>.*?)'"
+        header_re = "|Tootfile:'(?P<filename>.*?)' MD5:'(?P<md5>.*?)' Count:'(?P<count>.*?)'|"
         results = re.compile(header_re).search(tootarray[0])
         self.headerinfo = results.groupdict()
 
