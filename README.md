@@ -40,9 +40,28 @@ To decode a published tootfile, you'll need to find a valid header status id to 
  
 ### As a code library
 
-If you're interested in using tootfiles in another python project, you can stick its folder somewhere on your python path and just import it. The below code snippet outlines the API.
+If you're interested in using tootfiles in another python project, you can stick its folder somewhere on your python path and just import it. The below code snippet outlines how to encode and decode using the library.
 
     import tootfiles
+    
+    # encode a file
+    t = TootEncoder('filename')
+    print t
+    
+    # publish said tootfile to twitter
+    t.publish('username', 'password')
+    
+    # decode a file
+    d = TootDecoder('12345678')  # arg is the tootfile headers
+                                 # twitter status id
+    print d
+    
+    # write it out with its original filename
+    d.write()                    # if file exists, you must grant
+    d.write(overwrite=True)      # overwrite privs, or it will error
+    
+    d.write('somenewfilename.out')
+    d.write('somenewfilename.out', overwrite=True)
 
 
 ## License
