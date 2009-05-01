@@ -14,10 +14,10 @@ import base64
 import md5
 import time
 import urllib
+
+# External dependencies, see README.md
 import simplejson as json
 from BeautifulSoup import BeautifulSoup
-
-# External dependency, see README.md
 import twitter
 
 class TootEncoder(object):
