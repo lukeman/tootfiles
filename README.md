@@ -1,4 +1,6 @@
 # tootfiles.py
+by Luke Hatcher 
+<http://lukehatcher.com>
 
 *Store your data in Twitter. Brilliant.*
 
@@ -45,6 +47,8 @@ If you're interested in using tootfiles in another python project, you can stick
 
 ## License
 
+This work is covered under the MIT license, which means you're free to do what you want with it. Libre, you dig?
+
 Copyright (c) 2009 Luke Hatcher
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,3 +68,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+#### Special Thanks
+Special thanks goes to [Peter Burns](http://twitter.com/rictic) for taking a look at my code and making sure I didn't commit any high crimes or pythonic treason. His suggestions ultimately led to a better implementation of this awful idea.
+
+Also, I should thank Scott Carpenter for [his blog post on scraping toots with BeautifulSoup](http://www.movingtofreedom.org/2009/03/18/python-script-for-backing-up-twitter-statuses/). I replaced my terribly poor initial method with his approach and cleaned up the code quite a bit.
