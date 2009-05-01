@@ -26,17 +26,17 @@ This script can be used either as a standalone utility script or as a library.
 
 To test encoding a file, simply pass the script a binary file with the `encode` flag and it will print the toot array to standard out. Go hog wild if you wish, but know that large files will generate a huge amount of output.
 
-    python tootfiles.py -encode="helloworld.gif"
+    python tootfiles.py -e helloworld.gif
 
 To send that file to a Twitter stream, simply add your Twitter credentials using the `user` and `password` flags. I *highly* recommend setting up a second Twitter account to publish any data to. Small files are good here--keep it under 5KB for best results.
 
-    python tootfiles.py --encode="helloworld.gif" -u "someuser"  -p "somepass"
+    python tootfiles.py -e helloworld.gif -u someuser  -p somepass
 
 #### Decoding a published tootfile
 
 To decode a published tootfile, you'll need to find a valid header status id to work with. I just happen to have one available, so we'll use it. Because we're playing nicely, the decoded file will go to standard out, but feel to redirect it to an actual file for your own purposes.
 
-    python tootfiles.py --decode="1670303405" > helloagainworld.gif
+    python tootfiles.py -d 1670303405 > helloagainworld.gif
  
 ### As a code library
 
