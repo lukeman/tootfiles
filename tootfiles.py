@@ -6,6 +6,7 @@ http://lukehatcher.com/
 """
 
 import sys
+import getopt
 import os
 import math
 import re
@@ -14,6 +15,8 @@ import base64
 import md5
 import time
 import urllib
+from optparse import OptionParser
+
 
 # External dependencies, see README.md
 import simplejson as json
@@ -51,7 +54,6 @@ class TootEncoder(object):
         slices.reverse()
         slices = range(self.tootcount)
         slices.reverse()
-        print slices
         
         return [data[i*n:(i+1)*n] for i in slices]
     
@@ -76,10 +78,9 @@ class TootEncoder(object):
                         time.sleep(1)
         print "Finished."
                     
-    
-    def __unicode__(self):
-        for toot in self.tootlist:
-            print toot
+
+    def __str__(self):
+        return "\n".join([toot for toot in self.tootlist])
                 
         
 class TootDecoder(object):
@@ -105,6 +106,9 @@ class TootDecoder(object):
             f = open(filename,'wb')  
             f.write(self.rawdata)
             f.close()
+    
+    def __str__(self):
+        return self.rawdata
             
     
     def _grabheader(self):
@@ -159,12 +163,56 @@ class TootDecoder(object):
         self.md5hash = md5.new(self.rawdata).hexdigest()
         
         
-     
+def encode(filename, username=None, password=None):
+    if not os.path.exists(filename):
+        raise Exception("Specified input file does not exist")
+    
+    t = TootEncoder(filename)
+    
+    if username is not None and password is not None:
+        t.publish(username, password)
+    else:
+        print(t)
 
-def main():
-    # TODO
+def decode(tootid):
+    """Given a Twitter status ID, attempt to decode"""
+    t = TootDecoder(tootid)
+    t.retrieve()
+    print t
 
-
-if __name__ == '__main__':
-	main()
-
+def main(argv=None):
+    usage = "usage: %prog [-d tootidtodecode] or [-e 'somefile' -u 'username' -p 'password']"
+    
+    parser = OptionParser(usage=usage)
+    parser.add_option("-e", dest="filename", metavar="filename", default=None,
+                      help="The name of the file you wish to encode")
+    parser.add_option("-u", dest="username", metavar="username", default=None,
+                      help="A valid Twitter username")
+    parser.add_option("-p", dest="password", metavar="password", default=None,
+                      help="The password to your twitter account")
+    parser.add_option("-d", dest="tootfileid", metavar="id", default=None,
+                      help="Twitter ID of header to decode from")
+    (options, args) = parser.parse_args()
+    
+    encoding = options.filename is not None
+    decoding = options.tootfileid is not None
+    havepass = options.password is not None
+    haveuser = options.password is not None
+    
+    # This will catch cases where both encode and decode are selected and where neither is
+    if encoding is decoding:
+        parser.error("You must choose to either encode or decode. Use --help for more info.")
+    
+    if decoding:
+        # Decode a file from the header with Twitter ID tootfileid
+        # and print to stdout
+        decode(options.tootfileid)
+    elif encoding and haveuser and havepass:
+        # Encode a file and publish to Twitter
+        encode(options.filename, options.username, options.password)
+    elif encoding:
+        # Encode a file and print to stdout
+        encode(options.filename)
+        
+if __name__ == "__main__":
+    sys.exit(main())
