@@ -1,6 +1,6 @@
 # tootfiles.py
-by Luke Hatcher 
-<http://lukehatcher.com>
+by [Luke Hatcher](http://lukehatcher.com)
+Original blog post here: <http://lukehatcher.com/2009/05/storing-binary-data-in-your-twitter-stream/>
 
 *Store your data in Twitter. Brilliant.*
 
