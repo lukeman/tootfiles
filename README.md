@@ -2,7 +2,7 @@
 
 by [Luke Hatcher](http://lukehatcher.com)
 
-Original blog post here: <http://lukehatcher.com/2009/05/storing-binary-data-in-your-twitter-stream/>
+Original blog post here: <http://lukehatcher.com/2009/05/storing-binary-data-in-twitter/>
 
 *Store your data in Twitter. Brilliant.*
 
