@@ -50,8 +50,7 @@ class TootEncoder(object):
     def _segment(self, data, n=140):
         ''' Given the encoded string, slice it into twitter ready array elements '''
         self.tootcount = int(math.ceil(len(data)/float(n)))
-        slices = range(self.tootcount,0,-1)
-        slices.reverse()
+
         slices = range(self.tootcount)
         slices.reverse()
         
