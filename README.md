@@ -38,7 +38,14 @@ To send that file to a Twitter stream, simply add your Twitter credentials using
 
 To decode a published tootfile, you'll need to find a valid header status id to work with. I just happen to have one available, so we'll use it. Because we're playing nicely, the decoded file will go to standard out, but feel to redirect it to an actual file for your own purposes.
 
-    python tootfiles.py -d 1670303405 > helloagainworld.gif
+This command will pull down a small 'hello world' image:
+
+    python tootfiles.py -d 1684586022 > helloworld.gif
+
+This command pulls down the Google logo (82 toots in all!):
+    
+    python tootfiles.py -d 1684577533 > google.gif
+
  
 ### As a code library
 
